@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "buildCommand": "cd client && npm install && npm run build",
+  "outputDirectory": "client/dist",
+  "framework": "vite",
+  "rewrites": [
+    {
+      "source": "/api/test-smtp",
+      "destination": "/api/test-smtp.js"
+    },
+    {
+      "source": "/api/send-email",
+      "destination": "/api/send-email.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

@@ -4,6 +4,7 @@
   "description": "Certificate generator with bulk email via SMTP",
   "main": "server.js",
   "scripts": {
+    "build": "cd client && npm install && npm run build",
     "start": "node server.js"
   },
   "dependencies": {

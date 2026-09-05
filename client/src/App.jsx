@@ -505,7 +505,7 @@ function App() {
 
     const subjectTpl = emailDraft?.subject?.trim() || 'Your Certificate';
     const bodyTpl = emailDraft?.bodyHtml?.trim() || 'Hi {{firstName}},<br><br>Please find your certificate attached.';
-    const apiUrl = 'http://localhost:3001/api/send-email';
+    const apiUrl = '/api/send-email';
 
     let successCount = 0;
     let failCount = 0;

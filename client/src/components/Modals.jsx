@@ -1,7 +1,7 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Settings, Mail, Link as LinkIcon, Bold, Italic, Underline, Save, CheckCircle, AlertCircle, RefreshCw, Sparkles, FolderPlus } from 'lucide-react';
 
-const API_BASE = 'http://localhost:3001';
+const API_BASE = '';
 
 function Modals({ 
   smtpModalOpen, setSmtpModalOpen, 
