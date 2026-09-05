@@ -429,7 +429,7 @@
       // Selection indicator
       if (i === state.activeFieldIdx) {
         ctx.save();
-        ctx.strokeStyle = 'rgba(108, 99, 255, 0.85)';
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.85)';
         ctx.lineWidth = Math.max(1.5, w / 600);
         ctx.setLineDash([6, 4]);
         const pad = 8;
@@ -936,47 +936,48 @@
     render();
   }
 
-  fontSize.addEventListener('input', onTypographyChange);
-  boldBtn.addEventListener('click',   () => { boldBtn.classList.toggle('active');   onTypographyChange(); });
-  italicBtn.addEventListener('click', () => { italicBtn.classList.toggle('active'); onTypographyChange(); });
+  fontSize?.addEventListener('input', onTypographyChange);
+  boldBtn?.addEventListener('click',   () => { boldBtn.classList.toggle('active');   onTypographyChange(); });
+  italicBtn?.addEventListener('click', () => { italicBtn.classList.toggle('active'); onTypographyChange(); });
 
-  alignBtns.forEach(btn => btn.addEventListener('click', () => {
+  alignBtns?.forEach(btn => btn.addEventListener('click', () => {
     alignBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     onTypographyChange();
   }));
 
-  transformBtns.forEach(btn => btn.addEventListener('click', () => {
+  transformBtns?.forEach(btn => btn.addEventListener('click', () => {
     transformBtns.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     onTypographyChange();
   }));
 
-  fontColor.addEventListener('input', () => { fontColorHex.value = fontColor.value; onTypographyChange(); });
-  fontColorHex.addEventListener('input', () => {
-    if (/^#[0-9a-fA-F]{6}$/.test(fontColorHex.value)) { fontColor.value = fontColorHex.value; onTypographyChange(); }
+  fontColor?.addEventListener('input', () => { if (fontColorHex) fontColorHex.value = fontColor.value; onTypographyChange(); });
+  fontColorHex?.addEventListener('input', () => {
+    if (/^#[0-9a-fA-F]{6}$/.test(fontColorHex.value)) { if (fontColor) fontColor.value = fontColorHex.value; onTypographyChange(); }
   });
 
-  shadowEnabled.addEventListener('change', () => {
-    shadowControls.classList.toggle('visible', shadowEnabled.checked);
+  shadowEnabled?.addEventListener('change', () => {
+    if (shadowControls) shadowControls.classList.toggle('visible', shadowEnabled.checked);
     onTypographyChange();
   });
 
-  shadowColor.addEventListener('input', () => { shadowColorHex.value = shadowColor.value; onTypographyChange(); });
-  shadowColorHex.addEventListener('input', () => {
-    if (/^#[0-9a-fA-F]{6}$/.test(shadowColorHex.value)) { shadowColor.value = shadowColorHex.value; onTypographyChange(); }
+  shadowColor?.addEventListener('input', () => { if (shadowColorHex) shadowColorHex.value = shadowColor.value; onTypographyChange(); });
+  shadowColorHex?.addEventListener('input', () => {
+    if (/^#[0-9a-fA-F]{6}$/.test(shadowColorHex.value)) { if (shadowColor) shadowColor.value = shadowColorHex.value; onTypographyChange(); }
   });
 
-  [shadowBlur, shadowOffsetX, shadowOffsetY].forEach(el => el.addEventListener('input', onTypographyChange));
+  [shadowBlur, shadowOffsetX, shadowOffsetY].forEach(el => el?.addEventListener('input', onTypographyChange));
 
-  shadowOpacity.addEventListener('input', () => {
-    shadowOpacityVal.textContent = shadowOpacity.value + '%';
+  shadowOpacity?.addEventListener('input', () => {
+    if (shadowOpacityVal) shadowOpacityVal.textContent = shadowOpacity.value + '%';
     onTypographyChange();
   });
 
   // ── Download buttons ───────────────────────────────────────────────
-  btnDownload.addEventListener('click', downloadPreview);
-  btnBulk.addEventListener('click', downloadBulk);
+  btnDownload?.addEventListener('click', downloadPreview);
+  btnBulk?.addEventListener('click', downloadBulk);
+
 
   // ── Modal helpers ──────────────────────────────────────────────────
   function openModal(modal) {
@@ -1470,19 +1471,23 @@
 
   // ── Certificate image upload ───────────────────────────────────────
   function showDropZone() {
-    certDropZone.style.display  = '';
-    canvasContainer.style.display = 'none';
-    canvasHint.style.display    = 'none';
-    changeTemplateBtn.classList.remove('visible');
+    if (certDropZone) certDropZone.style.display = '';
+    if (canvasContainer) canvasContainer.style.display = 'none';
+    if (canvasHint) canvasHint.style.display = 'none';
+    if (changeTemplateBtn) changeTemplateBtn.classList.remove('visible');
+    const sb = document.getElementById('sidebar');
+    if (sb) sb.style.display = '';
   }
 
   function hideDropZone() {
-    certDropZone.style.display    = 'none';
-    canvasContainer.style.display = '';
-    canvasHint.style.display      = '';
-    changeTemplateBtn.classList.add('visible');
-    document.getElementById('sidebar').style.display = '';
+    if (certDropZone) certDropZone.style.display = 'none';
+    if (canvasContainer) canvasContainer.style.display = '';
+    if (canvasHint) canvasHint.style.display = '';
+    if (changeTemplateBtn) changeTemplateBtn.classList.add('visible');
+    const sb = document.getElementById('sidebar');
+    if (sb) sb.style.display = '';
   }
+
 
   function loadCertificateImage(file) {
     const url = URL.createObjectURL(file);

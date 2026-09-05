@@ -7,11 +7,54 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/style.css" />
   <style>
-    html, body {
+    :root {
+      --bg: #000000;
+      --surface: #111111;
+      --surface2: #222222;
+      --surface3: #1a1a1a;
+      --border: #333333;
+      --accent: #ffffff;
+      --text: #ffffff;
+      --text-muted: #999999;
+    }
+    :root[data-theme="light"] {
+      --bg: #ffffff;
+      --surface: #f5f5f5;
+      --surface2: #e0e0e0;
+      --surface3: #eeeeee;
+      --border: #cccccc;
+      --accent: #333333;
+      --text: #111111;
+      --text-muted: #666666;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
       overflow-y: auto !important;
       height: auto !important;
+      padding-bottom: 40px;
+    }
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    header h1 {
+      font-size: 18px;
+      font-weight: 600;
     }
     .container {
       margin: 24px auto;
@@ -66,7 +109,9 @@
 <header>
   <h1>auto name Certificate Generator - How to Use</h1>
   <span style="flex:1;"></span>
-  <a href="index.html" style="color:var(--text); text-decoration:none; margin-right: 15px; font-weight: 500;">Back to App</a>
+  <a href="/" style="background: #ffffff; color: #000000; text-decoration: none; margin-right: 15px; font-weight: 600; padding: 8px 16px; border-radius: 6px; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s;">
+    ← Back to Editor
+  </a>
   <button id="themeToggleBtn" style="background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:8px 12px; border-radius:6px; cursor:pointer; font-family:inherit; font-weight:500; transition:0.2s;">
     Toggle Theme
   </button>
@@ -165,7 +210,7 @@
     <li><code>{{date}}</code></li>
   </ul>
   <p>For example:</p>
-  <pre style="background:var(--surface2); padding:15px; border-radius:8px; font-family: inherit;">
+  <pre style="background:var(--surface2); padding:15px; border-radius:8px; font-family: inherit; overflow-x: auto;">
 Subject: Congratulations, {{firstName}}!
 
 Message:

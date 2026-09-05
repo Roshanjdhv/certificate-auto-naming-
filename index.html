@@ -17,6 +17,9 @@
 
   <!-- ── Header ───────────────────────────────────────── -->
   <header>
+    <button id="sidebarToggleBtn" style="background:var(--surface2); border:1px solid var(--border); color:var(--text); padding:8px 8px; border-radius:6px; cursor:pointer; margin-right: 12px; display:flex; align-items:center;" title="Toggle Sidebar">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
     <h1>Auto naming Certificate</h1>
     <span style="flex:1;">— drop Excel columns onto the canvas to place them</span>
     <a href="how-to-use.html" style="color:var(--text); text-decoration:none; margin-right: 15px; font-weight: 500;">How
@@ -31,7 +34,8 @@
   <div class="app">
 
     <!-- Sidebar -->
-    <aside class="sidebar" id="sidebar" style="display:none">
+    <aside class="sidebar" id="sidebar">
+
 
       <!-- Excel Import -->
       <div class="section">
@@ -553,6 +557,14 @@
         } else {
           root.setAttribute('data-theme', 'light');
         }
+      });
+    }
+
+    const sidebarToggleBtn = document.getElementById('sidebarToggleBtn');
+    const sidebar = document.getElementById('sidebar');
+    if (sidebarToggleBtn && sidebar) {
+      sidebarToggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('collapsed');
       });
     }
   </script>
